@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for ZC_MEHMET_CURRATE'
+define service ZUI_MEHMET_CURRATE_O4 {
+  expose ZC_MEHMET_CURRATE      as Currency_Rates;
+  expose zc_mehmet_currencyform as CurrencyForm;
+}

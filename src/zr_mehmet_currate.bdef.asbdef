@@ -1,0 +1,55 @@
+managed implementation in class ZBP_R_MEHMET_CURRATE unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_MEHMET_CURRATE alias Currency_Rates
+persistent table zmehmet_currate
+draft table zmehmet_currated
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+
+{
+  field ( mandatory : create )
+  CurID,
+  CurDate;
+
+  field ( readonly )
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LocalLastChangedAt,
+  LocalLastChangedBy;
+
+  field ( readonly : update )
+  CurID,
+  CurDate;
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zmehmet_currate
+    {
+      CurID              = cur_id;
+      CurDate            = cur_date;
+      //      CurRate            = cur_rate;
+      CurRateValue       = cur_rate_value;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+
+  static action UpdateRates result [0..*] $self;
+  action DisplayPDF result [0..*] $self;
+  //  function UpdateRatesTwo result [1] $self;
+
+}

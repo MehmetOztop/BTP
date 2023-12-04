@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for ZC_MEHMET_ATRAV000'
+define service ZUI_MEHMET_ATRAV000_O4 {
+  expose ZC_MEHMET_ATRAV000;
+}
